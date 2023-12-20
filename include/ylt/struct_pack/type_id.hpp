@@ -28,10 +28,8 @@ enum class type_id {
   // fundamental integral type
   int32_t = 1,
   uint32_t,
-#ifdef STRUCT_PACK_ENABLE_UNPORTABLE_TYPE
-  long,
-  ulong,
-#endif
+  long_t,
+  ulong_t,
   int64_t,
   uint64_t,
   int8_t,
@@ -140,10 +138,10 @@ constexpr type_id get_integral_type() {
   }
 #ifdef STRUCT_PACK_ENABLE_UNPORTABLE_TYPE
   else if constexpr (std::is_same_v<long, T>) {
-    return type_id::long;
+    return type_id::long_t;
   }
   else if constexpr (std::is_same_v<unsigned long, T>) {
-    return type_id::ulong;
+    return type_id::ulong_t;
   }
 #endif
   else if constexpr (std::is_same_v<int64_t, T> ||
